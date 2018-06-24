@@ -1,5 +1,8 @@
+
+
 export class UserInfo{
-    Name : string;
-    Id : string;
-    UniqueId : AAGUID;
+    userInfoPersonDisplayName : string;
+    userInfoUniqueId : string;
+    userType : string;
+    userInfoAuthToken : string;
 }

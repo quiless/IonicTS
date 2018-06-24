@@ -8,23 +8,40 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 /* Viwes */
 import { LoginPage } from '../pages/login/login';
-import { MyClaimsPage } from '../pages/myClaims/myClaims';
+import { ClaimPage } from '../pages/claim/claim';
+
+/* Components */
+
+import { ClaimModalComponent } from '../components/claim-modal/claimModal'
+
+/* Providers */
+
+import { ClaimProvider } from '../providers/claimProvider'
+import {SQLiteProvider} from '../database/SQLite'
 
 /* Services */
 
-import { AuthService } from '../services/auth';
+import { AuthService } from '../services/authService';
+import { ClaimService } from '../services/claimService';
 
 /* Natives */
 import { IonicStorageModule } from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { SQLite } from '@ionic-native/sqlite'
+
+
+
+
+
 
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    MyClaimsPage
+    ClaimPage,
+    ClaimModalComponent
   ],
   imports: [
     BrowserModule,
@@ -36,12 +53,17 @@ import { StatusBar } from '@ionic-native/status-bar';
   entryComponents: [
     MyApp,
     LoginPage,
-    MyClaimsPage
+    ClaimPage,
+    ClaimModalComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
     AuthService,
+    ClaimService,
+    ClaimProvider,
+    SQLiteProvider,
+    SQLite,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

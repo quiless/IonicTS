@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
 
 /* Services */
-import { AuthService } from '../../services/auth';
+import { AuthService } from '../../services/authService';
 
 /* Models */
 import { Login } from '../../models/login';
@@ -15,12 +15,12 @@ import { enumAuthResponse } from '../../models/enumAuthResponse';
 import { Storage } from '@ionic/storage';
 
 /* Views */
-import { MyClaimsPage } from '../../pages/myClaims/myClaims';
+import { ClaimPage } from '../../pages/claim/claim';
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
-  entryComponents:[MyClaimsPage]
+  entryComponents:[ClaimPage]
 })
 
 export class LoginPage {
@@ -81,7 +81,7 @@ export class LoginPage {
         });   
 
 
-        this.navCtrl.push(MyClaimsPage);
+        this.navCtrl.push(ClaimPage);
 
       }
 

@@ -1,11 +1,11 @@
 import { UserInfo } from '../models/userInfo';
 
 export class AuthResponse {
-    Type : number;
+    Type : string;
     TypeResponse : number;
     Message : string;
     Errors : string;
-    DataResult : UserInfo;
+    DataResult : any;
 
 }
 

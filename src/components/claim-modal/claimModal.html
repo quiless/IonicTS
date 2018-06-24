@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        Adicionar Sinistro 
+      </ion-title>
+      <ion-buttons end>
+          <button ion-button (click)="dismiss()"> Fechar </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+
+  <ion-content>
+ 
+    <ion-item>
+      <ion-label color="primary" stacked> Código do Sinistro </ion-label>
+      <ion-input type="text" placeholder="Informe o código do sinistro" [(ngModel)]=claimCode></ion-input>
+    </ion-item>
+    <button ion-button (click)='getClaimByClaimCode()'> Adicionar </button>
+  
+    
+  </ion-content>
