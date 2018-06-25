@@ -49,11 +49,7 @@ export class ClaimProvider {
 
         return db.executeSql(sql, data)
           .then((data: any) => {
-            if (data.rows.length > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return data.rows.length;
           })
           .catch((e) => console.error(e));
       })

@@ -1,6 +1,6 @@
 /* Angular */
 import { Component } from '@angular/core';
-import { NavController, LoadingController, AlertController, ModalController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController, ModalController, Events } from 'ionic-angular';
 
 /* Components */
 import { ClaimModalComponent } from '../../components/claim-modal/claimModal'
@@ -18,7 +18,15 @@ export class ClaimPage {
   claims: any[] = [];
 
  
-  constructor(public navCtrl: NavController, public alertController : AlertController, public modalController : ModalController, private claimProvider : ClaimProvider ) {
+  constructor(public navCtrl: NavController, 
+    public alertController : AlertController, 
+    public modalController : ModalController, 
+    private claimProvider : ClaimProvider,
+    public events : Events ) {
+
+    this.events.subscribe('getClaims', () => {
+      this.getClaims();
+    });
   }
 
   ionViewDidLoad() {

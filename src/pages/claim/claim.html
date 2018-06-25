@@ -1,19 +1,22 @@
 <ion-header>
-    <ion-navbar>
-      <ion-title>
-        Meus Sinistros
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  
-
+  <ion-navbar>
+    <ion-title>
+      Meus Sinistros
+    </ion-title>
+  </ion-navbar>
+</ion-header>
   
 
 <ion-content>
- 
+  <ion-list>
+    <claim-card
+      *ngFor="let claim of claims"
+      [ClaimCode] = "claim.ClaimCode"
+      [InsuredSubmitDate] = "claim.InsuredSubmitDate"
+      [UniqueId]="claim.UniqueId">
+    </claim-card>
+  </ion-list>
 </ion-content>
-
 
 
 

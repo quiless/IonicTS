@@ -1,7 +1,7 @@
 /* Angular */
 
 import { Component } from '@angular/core';
-import { NavController, LoadingController, AlertController, ModalController, ViewController } from 'ionic-angular';
+import { Events, NavController, LoadingController, AlertController, ModalController, ViewController, ToastController } from 'ionic-angular';
 
 /* Services */
 
@@ -35,7 +35,9 @@ export class ClaimModalComponent {
     public loadingController : LoadingController,
     private viewController : ViewController,
     private claimService : ClaimService,
-    private claimProvider : ClaimProvider) {
+    private claimProvider : ClaimProvider,
+    public toastController : ToastController,
+    public events : Events ) {
      
   }
 
@@ -52,23 +54,32 @@ export class ClaimModalComponent {
       duration: 2000
     });
 
-    let alert = this.alertController.create({
-      buttons: ['Ok']
+    let toast = this.toastController.create({
+      duration: 2000,
+      position: 'bottom'
     });
 
     if (this.authResponse.TypeResponse != enumAuthResponse.Success){
-      alert.setMessage("Processo não encontrado.");
-      alert.present();
+      toast.setMessage("Processo não encontrado.");
+      toast.present();
       blockUi.dismiss();
     } else {
-      this.insertClaim(this.authResponse.DataResult).then(() =>{
-        alert.setMessage("Processo Encontrado.");
-        alert.present();
-        blockUi.dismiss();
-        this.dismiss();
-      })
+      return this.claimProvider.getClaimByUniqueId(this.authResponse.DataResult.UniqueId).then((result) => {
+        if (result > 0){
+            toast.setMessage("O processo já está em sua lista.");
+            toast.present();
+            blockUi.dismiss();
+          } else {
+            this.insertClaim(this.authResponse.DataResult).then(() =>{
+              toast.setMessage("Processo adicionado com sucesso.");
+              toast.present();
+              blockUi.dismiss();
+              this.dismiss();
+              this.events.publish('getClaims', "");
+            })
+          }
+      });
     }
-
   }
 
   dismiss(){

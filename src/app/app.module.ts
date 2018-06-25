@@ -13,6 +13,7 @@ import { ClaimPage } from '../pages/claim/claim';
 /* Components */
 
 import { ClaimModalComponent } from '../components/claim-modal/claimModal'
+import {  ClaimCard } from '../components/claim-card/claimCard'
 
 /* Providers */
 
@@ -41,7 +42,8 @@ import { SQLite } from '@ionic-native/sqlite'
     MyApp,
     LoginPage,
     ClaimPage,
-    ClaimModalComponent
+    ClaimModalComponent,
+    ClaimCard
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import { SQLite } from '@ionic-native/sqlite'
     MyApp,
     LoginPage,
     ClaimPage,
-    ClaimModalComponent
+    ClaimModalComponent,
+    ClaimCard
   ],
   providers: [
     StatusBar,
