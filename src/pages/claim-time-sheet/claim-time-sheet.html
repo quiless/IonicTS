@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      TS - {{ClaimCode}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+  
+
+<ion-content>
+  <ion-list>
+    <claim-time-sheet-card
+      *ngFor="let claimTimeSheet of claimTimeSheets"
+      [IncidenceTypeName] = "claimTimeSheet.IncidenceTypeName"
+      [IncidenceName] = "claimTimeSheet.IncidenceName"
+      [TimeSpentMinute] = "claimTimeSheet.TimeSpentMinute"
+      [UniqueId]="claimTimeSheet.UniqueId">
+    </claim-time-sheet-card>
+  </ion-list>
+</ion-content>
+
+
+
+<ion-footer no-shadow>
+    <ion-fab bottom right >
+        <button ion-fab> <ion-icon name="add"></ion-icon> </button>
+    </ion-fab>
+</ion-footer>

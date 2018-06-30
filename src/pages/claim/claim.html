@@ -11,6 +11,7 @@
   <ion-list>
     <claim-card
       *ngFor="let claim of claims"
+      (click)="redirectClaimTimeSheet(claim.UniqueId, claim.ClaimCode)"
       [ClaimCode] = "claim.ClaimCode"
       [InsuredSubmitDate] = "claim.InsuredSubmitDate"
       [UniqueId]="claim.UniqueId">

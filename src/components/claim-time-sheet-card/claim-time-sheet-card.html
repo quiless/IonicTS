@@ -1,0 +1,32 @@
+<ion-card>
+    <ion-card-header>
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-col col-10>
+              IncidenceName  {{IncidenceName}}
+          </ion-col>
+          <ion-col col-1 (tap)='deleteClaimTimeSheet()'>
+            <ion-icon name="trash"></ion-icon>
+          </ion-col>
+          <ion-col col-1 (tap)='editClaimTimeSheet()'>
+            <ion-icon name="create"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+              IncidenceTypeName : {{IncidenceTypeName}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-12>
+                TimeSpentMinute  {{TimeSpentMinute}}
+            </ion-col>
+          </ion-row>
+      </ion-grid>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Add card content here! -->
+    </ion-card-content>
+  </ion-card>
+
+

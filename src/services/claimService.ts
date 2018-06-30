@@ -6,7 +6,7 @@ import { Http, RequestOptions, Headers } from '@angular/http';
 import { UrlBase } from '../models/urlBase'
 
 /* Native */
-import { Storage } from '@ionic/storage';
+//import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class ClaimService {
@@ -15,7 +15,7 @@ export class ClaimService {
     options = new RequestOptions();
     url = new UrlBase().getBaseURL();
 
-    constructor(public http: Http,private storage: Storage){
+    constructor(public http: Http){
         this.header.append('Access-Control-Allow-Origin' , '*');
         this.header.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
         this.header.append('Accept','application/json');
@@ -53,7 +53,6 @@ export class ClaimService {
             "Message": null,
             "Errors": null
         }
-        //console.log(this.url);
         //return this.http.post(this.url,data, this.options);
         return json;
     }

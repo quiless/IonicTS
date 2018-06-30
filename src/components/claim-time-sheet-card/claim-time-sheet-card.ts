@@ -3,32 +3,36 @@ import { Component, Input } from '@angular/core';
 import { NavController, LoadingController, AlertController, DateTime, ToastController, Events } from 'ionic-angular';
 
 /* Providers */
-import { ClaimProvider } from '../../providers/claimProvider'
+import { ClaimTimeSheetProvider } from '../../providers/claimTimeSheetProvider'
 
 @Component({
-  selector: 'claim-card',
-  templateUrl: 'claimCard.html'
+  selector: 'claim-time-sheet-card',
+  templateUrl: 'claim-time-sheet-card.html'
 })
 
-export class ClaimCard {
+export class ClaimTimeSheetCard {
 
-  @Input("ClaimCode")
-  ClaimCode: string = "";
+  @Input("IncidenceName")
+  IncidenceName: string = "";
   
-  @Input("InsuredSubmitDate")
-  InsuredSubmitDate: DateTime;
+  @Input("IncidenceTypeName")
+  IncidenceTypeName: DateTime;
 
   @Input("UniqueId")
   UniqueId: string;
 
-  constructor(private claimProvider : ClaimProvider, 
+  
+  @Input("TimeSpentMinute")
+  TimeSpentMinute: string = "";
+
+  constructor(private claimTimeSheetProvider : ClaimTimeSheetProvider, 
     public loadingController : LoadingController,
     public toastController : ToastController,
     public events : Events) { 
 
   }
 
-  deleteClaim(){
+  deleteClaimTimeSheet(){
 
     let blockUi = this.loadingController.create({
       spinner: 'ios',
@@ -36,18 +40,22 @@ export class ClaimCard {
     });
 
     let toast = this.toastController.create({
-      message: 'Processo deletado com sucesso!',
+      message: 'TimeSheet deletado com sucesso!',
       duration: 2000,
       position: 'bottom'
     });
 
     blockUi.present();
     
-    return this.claimProvider.deleteClaim(this.UniqueId).then(() => {
+    return this.claimTimeSheetProvider.deleteClaimTimeSheet(this.UniqueId).then(() => {
       blockUi.dismiss();
       toast.present();
       this.events.publish('getClaims', "");
     })
+  }
+
+  editClaimTimeSheet () {
+    
   }
   
 

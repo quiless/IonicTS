@@ -34,6 +34,7 @@ export class SQLiteProvider {
     // Criando as tabelas
     db.sqlBatch([
       ['CREATE TABLE IF NOT EXISTS Claim (Id INTEGER primary key AUTOINCREMENT NOT NULL, InsuredSubmitDate DATETIME, UniqueId TEXT, ClaimCode TEXT, InsuranceNumber TEXT)'],
+      ['CREATE TABLE IF NOT EXISTS ClaimTimeSheet (Id INTEGER primary key AUTOINCREMENT NOT NULL, UniqueId TEXT, ClaimUniqueId TEXT, HasCashFlow  NUMERIC, IncidenceName TEXT, IncidenceUniqueId TEXT, IncidenceTypeName TEXT, IncidenceTypeUniqueId TEXT, CreateDate DATETIME, StartDate DATETIME, EndDate DATETIME, TimeSpentMinute INT, FeesGenerated INT, FeesToGenerate INT, Observation TEXT, HasCollection NUMERIC )'],
       //['CREATE TABLE IF NOT EXISTS products (id integer primary key AUTOINCREMENT NOT NULL, name TEXT, price REAL, duedate DATE, active integer, category_id integer, FOREIGN KEY(category_id) REFERENCES categories(id))']
     ])
     .then(() => console.log('Tabelas criadas'))

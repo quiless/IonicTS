@@ -17,11 +17,11 @@ import { enumAuthResponse } from '../../models/enumAuthResponse';
 import { ClaimProvider } from '../../providers/claimProvider'
 
 @Component({
-  selector: 'component-claim-modal',
-  templateUrl: 'claimModal.html'
+  selector: 'component-time-sheet-modal',
+  templateUrl: 'claim-time-sheet-modal.html'
 })
 
-export class ClaimModalComponent {
+export class ClaimTimeSheetModalComponent {
 
   authResponse = new AuthResponse();
   claimCode = "";
@@ -48,6 +48,7 @@ export class ClaimModalComponent {
 
   getClaimByClaimCode (){
     this.authResponse = this.claimService.getClaim(this.claimCode);
+    console.log(this.claimCode);
     let blockUi = this.loadingController.create({
       spinner: 'ios',
       duration: 2000
