@@ -39,7 +39,7 @@ export class ClaimPage {
    
   }
 
-  getClaimModal (){
+  showClaimModal (){
     let profileModal = this.modalController.create(ClaimModalComponent);
     profileModal.present();
   }

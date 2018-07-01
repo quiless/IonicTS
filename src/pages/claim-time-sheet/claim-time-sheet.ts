@@ -5,13 +5,18 @@ import { NavController, LoadingController, AlertController, ModalController, Eve
 /* Components */
 
 import { ClaimTimeSheetCard } from '../../components/claim-time-sheet-card/claim-time-sheet-card'
+import { ClaimTimeSheetModalComponent } from '../../components/claim-time-sheet-modal/claim-time-sheet-modal'
 
 /* Providers */
 import { ClaimTimeSheetProvider } from '../../providers/claimTimeSheetProvider'
+import { IncidenceProvider } from '../../providers/incidenceProvider'
+import { IncidenceTypeProvider } from '../../providers/incidenceTypeProvider'
 
 /* Services */
 
 import { ClaimTimeSheetService } from '../../services/claimTimeSheetService'
+import { IncidenceService } from '../../services/incidenceService'
+import { IncidenceTypeService } from '../../services/incidenceTypeService'
 
 /* Models */
 
@@ -27,20 +32,26 @@ import { enumAuthResponse } from '../../models/enumAuthResponse';
 export class ClaimTimeSheetPage {
 
   claimTimeSheets: any[] = [];
+  incidences : any [] = [];
+  incidenceTypes : any [] = [];
   authResponse = new AuthResponse();
   ClaimCode = "";
   UniqueId = "";
 
 
   constructor(public navCtrl: NavController,
-    public alertController: AlertController,
-    public modalController: ModalController,
-    public toastController: ToastController,
-    public loadingController: LoadingController,
-    public claimTimeSheetProvider: ClaimTimeSheetProvider,
+    private alertController: AlertController,
+    private modalController: ModalController,
+    private toastController: ToastController,
+    private loadingController: LoadingController,
+    private claimTimeSheetProvider: ClaimTimeSheetProvider,
+    private incidenceProvider : IncidenceProvider,
+    private incidenceTypeProvider : IncidenceTypeProvider,
+    private incidenceTypeService : IncidenceTypeService,
+    private incidenceService : IncidenceService,
     private claimTimeSheetService: ClaimTimeSheetService,
     private navParams: NavParams,
-    public events: Events) {
+    private events: Events) {
 
     this.ClaimCode = navParams.get('ClaimCode');
     this.UniqueId = navParams.get('UniqueId');
@@ -50,12 +61,120 @@ export class ClaimTimeSheetPage {
 
   ionViewDidLoad() {
     this.getClaimTimeSheetsApi();
+    this.getIncidencesApi();
+    this.getIncidenceTypesApi();
+  }
 
+  getIncidenceTypesApi (){
+    this.authResponse = this.incidenceTypeService.getIncidenceTypes();
+
+    let blockUi = this.loadingController.create({
+      spinner: 'ios',
+      duration: 2000
+    });
+
+    if (this.authResponse.TypeResponse == enumAuthResponse.Success) {
+      let toast = this.toastController.create({
+        duration: 2000,
+        position: 'bottom'
+      });
+
+      for (var i = 0; i < this.authResponse.DataResult.length; i++) {
+        let result = this.authResponse.DataResult[i];
+        this.getIncidenceTypeByUniqueId(this.authResponse.DataResult[i].UniqueId).then((response) => {
+          if (response == 0){
+            this.insertIncidenceType(result).then((retorno) => { 
+            });
+          } else {
+            this.updateIncidenceType(result);
+          }
+        }).then(() => {
+          this.getIncidenceTypes();
+        })
+      }
+    }
+  }
+
+  getIncidencesApi (){
+    this.authResponse = this.incidenceService.getIncidences();
+
+    let blockUi = this.loadingController.create({
+      spinner: 'ios',
+      duration: 2000
+    });
+
+    if (this.authResponse.TypeResponse == enumAuthResponse.Success) {
+      let toast = this.toastController.create({
+        duration: 2000,
+        position: 'bottom'
+      });
+
+      for (var i = 0; i < this.authResponse.DataResult.length; i++) {
+        let result = this.authResponse.DataResult[i];
+        this.getIncidenceByUniqueId(this.authResponse.DataResult[i].UniqueId).then((response) => {
+          if (response == 0){
+            this.insertIncidence(result).then((retorno) => { 
+            });
+          } else {
+            this.updateIncidence(result);
+          }
+        }).then(() => {
+          this.getIncidences();
+        })
+      }
+    }
+  }
+
+  getIncidenceTypes(){
+    return this.incidenceTypeProvider.getIncidenceTypes().then((result: any[]) => {
+      this.incidenceTypes = result;
+      let toast = this.toastController.create({
+        duration: 2000,
+        position: 'bottom'
+      });
+    });
+  }
+
+  getIncidences(){
+    return this.incidenceProvider.getIncidences().then((result: any[]) => {
+      this.incidences = result;
+      let toast = this.toastController.create({
+        duration: 2000,
+        position: 'bottom'
+      });
+    });
+  }
+
+  showClaimTimeSheetModal (){
+    let claimTimeSheetModal = this.modalController.create(ClaimTimeSheetModalComponent);
+    claimTimeSheetModal.present();
+  }
+
+  insertIncidenceType(data) {
+    return this.incidenceTypeProvider.insertIncidenceType(data);
+  }
+
+  updateIncidenceType(data){
+    return this.incidenceTypeProvider.updateIncidenceType(data);
+  }
+
+  insertIncidence(data) {
+    return this.incidenceProvider.insertIncidence(data);
+  }
+
+  updateIncidence(data){
+    return this.incidenceProvider.updateIncidence(data);
+  }
+
+  getIncidenceByUniqueId (data){
+    return this.incidenceProvider.getIncidenceByUniqueId(data);
+  }
+
+  getIncidenceTypeByUniqueId (data){
+    return this.incidenceTypeProvider.getIncidenceTypeByUniqueId(data);
   }
 
   getClaimTimeSheetsApi() {
-   
-
     this.authResponse = this.claimTimeSheetService.getClaimTimeSheet(this.UniqueId);
     let blockUi = this.loadingController.create({
       spinner: 'ios',
@@ -104,9 +223,6 @@ export class ClaimTimeSheetPage {
         duration: 2000,
         position: 'bottom'
       });
-
-      toast.setMessage("passou aqui 2");
-      toast.present();
     });
   }
 }

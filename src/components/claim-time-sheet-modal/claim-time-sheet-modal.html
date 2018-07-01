@@ -1,1 +1,76 @@
-Teste
+<ion-header>
+    <ion-navbar>
+      <ion-title>
+        Adicionar/Editar TimeSheet
+      </ion-title>
+      <ion-buttons end>
+          <button ion-button (click)="dismiss()"> Fechar </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+
+  <ion-content>
+    <ion-item>
+      <ion-label> Incidência </ion-label>
+      <ion-select [(ngModel)]="claimTimeSheet.IncidenceUniqueId" (ionChange)="getIncidenceTypesByIncidenceUniqueId()">
+        <ion-option *ngFor="let incidence of incidences" [value]="incidence.UniqueId"> {{ incidence.Name }} </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label> Tipo de Incidência </ion-label>
+      <ion-select [(ngModel)]="claimTimeSheet.IncidenceTypeUniqueId" >
+        <ion-option *ngFor="let incidenceType of incidenceTypes" [value]="incidenceType.UniqueId"> {{ incidenceType.Name }} </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data Inicial</ion-label>
+      <ion-datetime 
+        displayFormat="DD/MM/YYYY HH:mm" 
+        [(ngModel)]="claimTimeSheet.StartDate"
+        doneText="Ok"
+        cancelText="Cancelar">
+      </ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Data Final</ion-label>
+      <ion-datetime 
+        displayFormat="DD/MM/YYYY HH:mm" 
+        [(ngModel)]="claimTimeSheet.EndDate"
+        doneText="Ok"
+        cancelText="Cancelar">
+      </ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Duração(Min)</ion-label>
+      <ion-input type="number" [(ngModel)]=claimTimeSheet.FeesGenerated></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total Lançado (hh:mm)</ion-label>
+      <ion-input type="text" [(ngModel)]=claimTimeSheet.FeesToGenerate></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label> Moeda </ion-label>
+      <ion-select [(ngModel)]="claimTimeSheet.IncidenceUniqueId" (ionChange)="getIncidenceTypesByIncidenceUniqueId()">
+        <ion-option *ngFor="let incidence of incidences" [value]="incidence.UniqueId"> {{ incidence.Name }} </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label> Nível Hierárquico </ion-label>
+      <ion-select [(ngModel)]="claimTimeSheet.IncidenceUniqueId" (ionChange)="getIncidenceTypesByIncidenceUniqueId()">
+        <ion-option *ngFor="let incidence of incidences" [value]="incidence.UniqueId"> {{ incidence.Name }} </ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label> Cobra Cliente? </ion-label>
+      <ion-toggle [(ngModel)]="claimTimeSheet.HasCashFlow"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Descrição da tarefa</ion-label>
+      <ion-textarea 
+        [(ngModel)]=claimTimeSheet.Observation
+        rows="8">
+      </ion-textarea>
+    </ion-item>
+    <button ion-button> Salvar </button>
+  </ion-content>
