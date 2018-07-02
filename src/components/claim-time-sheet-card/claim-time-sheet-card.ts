@@ -46,11 +46,11 @@ export class ClaimTimeSheetCard {
     });
 
     blockUi.present();
-    
+    console.log(this.UniqueId);
     return this.claimTimeSheetProvider.deleteClaimTimeSheet(this.UniqueId).then(() => {
       blockUi.dismiss();
       toast.present();
-      this.events.publish('getClaims', "");
+      this.events.publish('getClaimTimeSheets', "");
     })
   }
 

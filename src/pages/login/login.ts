@@ -68,6 +68,7 @@ export class LoginPage {
         alert.setMessage("Uhuuul! Login realizado com sucesso!");
         alert.present();
         this.storage.set('UserInfo', this.authResponse.DataResult);
+        console.log(this.login);
         this.storage.set('Login', this.login);
         blockUi.dismiss();
         this.storage.get('UserInfo').then(response =>{

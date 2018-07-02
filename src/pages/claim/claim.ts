@@ -11,6 +11,10 @@ import { ClaimProvider } from '../../providers/claimProvider'
 /* Views */
 import { ClaimTimeSheetPage } from '../claim-time-sheet/claim-time-sheet'
 
+/* Native */
+import { Storage } from '@ionic/storage';
+
+
 @Component({
   selector: 'page-claim',
   templateUrl: 'claim.html',
@@ -22,12 +26,13 @@ export class ClaimPage {
   claims: any[] = [];
 
  
-  constructor(public navCtrl: NavController, 
-    public alertController : AlertController, 
-    public modalController : ModalController, 
+  constructor(private navCtrl: NavController, 
+    private storage : Storage,
+    private alertController : AlertController, 
+    private modalController : ModalController, 
     private claimProvider : ClaimProvider,
-    public toastController : ToastController,
-    public events : Events ) {
+    private toastController : ToastController,
+    private events : Events ) {
 
     this.events.subscribe('getClaims', () => {
       this.getClaims();
@@ -36,7 +41,14 @@ export class ClaimPage {
 
   ionViewDidLoad() {
     this.getClaims();
+
+    console.log(this.storage);
    
+    var userInfo = this.storage.get('UserInfo');
+    var login = this.storage.get('Login');
+
+    console.log(userInfo);
+    console.log(login);
   }
 
   showClaimModal (){
@@ -48,16 +60,17 @@ export class ClaimPage {
   getClaims(){
     return this.claimProvider.getClaims().then((result : any[]) => {
       this.claims = result;
-      let alert = this.alertController.create({
-        buttons: ['Ok']
-      });
-      alert.setMessage(this.claims.length.toString());
-        alert.present();
     });
   }
 
   redirectClaimTimeSheet(UniqueId, ClaimCode){
     this.navCtrl.push(ClaimTimeSheetPage, {UniqueID :UniqueId, ClaimCode : ClaimCode});
+  }
+
+  synchronize(event){
+    setTimeout(() => {
+      event.complete();
+    }, 2000)
   }
 
 }

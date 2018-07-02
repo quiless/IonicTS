@@ -1,7 +1,7 @@
 <ion-header>
     <ion-navbar>
       <ion-title>
-        Adicionar/Editar TimeSheet
+        Adicionar/Editar Timesheet
       </ion-title>
       <ion-buttons end>
           <button ion-button (click)="dismiss()"> Fechar </button>
@@ -28,6 +28,7 @@
       <ion-datetime 
         displayFormat="DD/MM/YYYY HH:mm" 
         [(ngModel)]="claimTimeSheet.StartDate"
+        (ionChange)="calculateTime()"
         doneText="Ok"
         cancelText="Cancelar">
       </ion-datetime>
@@ -37,17 +38,18 @@
       <ion-datetime 
         displayFormat="DD/MM/YYYY HH:mm" 
         [(ngModel)]="claimTimeSheet.EndDate"
+        (ionChange)="calculateTime()"
         doneText="Ok"
         cancelText="Cancelar">
       </ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label stacked>Duração(Min)</ion-label>
-      <ion-input type="number" [(ngModel)]=claimTimeSheet.FeesGenerated></ion-input>
+      <ion-input type="number" [(ngModel)]=claimTimeSheet.TimeSpentMinute disabled="true"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Total Lançado (hh:mm)</ion-label>
-      <ion-input type="text" [(ngModel)]=claimTimeSheet.FeesToGenerate></ion-input>
+      <ion-input type="text" [(ngModel)]=claimTimeSheet.TimeSpentHourMinute disabled="true"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked> Moeda </ion-label>

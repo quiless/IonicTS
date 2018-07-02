@@ -49,6 +49,4 @@ export class ClaimCard {
       this.events.publish('getClaims', "");
     })
   }
-  
-
 }

@@ -56,6 +56,10 @@ export class ClaimTimeSheetPage {
     this.ClaimCode = navParams.get('ClaimCode');
     this.UniqueId = navParams.get('UniqueId');
 
+    this.events.subscribe('getClaimTimeSheets', () => {
+      this.getClaimTimeSheets();
+    });
+
    
   }
 
@@ -145,8 +149,8 @@ export class ClaimTimeSheetPage {
     });
   }
 
-  showClaimTimeSheetModal (){
-    let claimTimeSheetModal = this.modalController.create(ClaimTimeSheetModalComponent);
+  showClaimTimeSheetModal (data){
+    let claimTimeSheetModal = this.modalController.create(ClaimTimeSheetModalComponent, data);
     claimTimeSheetModal.present();
   }
 

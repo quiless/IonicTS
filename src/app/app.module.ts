@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { HttpClient, HttpClientModule } from '@angular/common/http'
 
 /* Viwes */
 import { LoginPage } from '../pages/login/login';
@@ -16,6 +17,7 @@ import { ClaimTimeSheetModalComponent } from '../components/claim-time-sheet-mod
 import { ClaimModalComponent } from '../components/claim-modal/claimModal'
 import { ClaimCard } from '../components/claim-card/claimCard'
 import { ClaimTimeSheetCard } from '../components/claim-time-sheet-card/claim-time-sheet-card'
+
 
 /* Providers */
 
@@ -38,6 +40,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SQLite } from '@ionic-native/sqlite'
+import { Interceptor } from '../services/interceptorService';
 
 
 
@@ -60,7 +63,9 @@ import { SQLite } from '@ionic-native/sqlite'
     BrowserModule,
     IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    Interceptor,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

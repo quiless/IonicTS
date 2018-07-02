@@ -10,11 +10,11 @@
   <img class="img-logo" src="./assets/imgs/logo3.png">
   <ion-item>
     <ion-label color="white" stacked> Usuário </ion-label>
-    <ion-input type="text" placeholder="Digite o usuario"  [(ngModel)]=login.Username></ion-input>
+    <ion-input type="text" [(ngModel)]=login.Username></ion-input>
   </ion-item>
   <ion-item>
     <ion-label color="white" stacked> Senha </ion-label>
-    <ion-input type="password" placeholder="Digite a senha"  [(ngModel)]=login.Password></ion-input>
+    <ion-input type="password" [(ngModel)]=login.Password></ion-input>
   </ion-item>
   <ion-col>
     <button ion-button class="btn-default"  (click)='signIn()'> Entrar </button>

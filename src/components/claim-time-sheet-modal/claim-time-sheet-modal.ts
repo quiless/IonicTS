@@ -1,7 +1,7 @@
 /* Angular */
 
 import { Component } from '@angular/core';
-import { Events, NavController, LoadingController, AlertController, ModalController, ViewController, ToastController } from 'ionic-angular';
+import { Events, NavController, LoadingController, NavParams, AlertController, ModalController, ViewController, ToastController } from 'ionic-angular';
 
 /* Providers */
 
@@ -11,7 +11,6 @@ import { IncidenceTypeProvider } from '../../providers/incidenceTypeProvider'
 /* Model */
 
 import { ClaimTimeSheet } from '../../models/claimTimeSheet'
-
 
 @Component({
   selector: 'component-time-sheet-modal',
@@ -29,6 +28,7 @@ export class ClaimTimeSheetModalComponent {
  
   constructor(
     private navCtrl: NavController, 
+    private navParams : NavParams,
     private modalController : ModalController, 
     private incidenceProvider : IncidenceProvider,
     private incidenceTypeProvider : IncidenceTypeProvider,
@@ -37,26 +37,75 @@ export class ClaimTimeSheetModalComponent {
     private viewController : ViewController,
     private toastController : ToastController,
     private events : Events ) {
-     
+
+      this.getIncidences().then(() => {
+          if (navParams.data != undefined && navParams.data != null ){
+            this.claimTimeSheet = navParams.data;
+            this.calculateTime();
+            this.claimTimeSheet.IncidenceUniqueId = 'dcf78620-01ba-47f2-8447-a43df37ee9d4'
+          
+          }
+      });
   }
 
   ionViewDidLoad() {
-    
-   this.getIncidences();
+    console.log(this.claimTimeSheet);
+    console.log(this.incidences);
   }
 
   getIncidences(){
     return this.incidenceProvider.getIncidences().then((result: any[]) => {
       this.incidences = result;
-      console.log(result);
     });
   }
 
   getIncidenceTypesByIncidenceUniqueId (){
-    console.log(this.claimTimeSheet.IncidenceUniqueId);
     return this.incidenceTypeProvider.getIncidenceTypeByIncidenceUniqueId(this.claimTimeSheet.IncidenceUniqueId).then((result : any[]) =>{
       this.incidenceTypes = result;
     })
+  }
+
+  
+  dismiss(){
+    this.viewController.dismiss();
+  }
+
+  calculateTime (){
+    if (this.claimTimeSheet.StartDate != null && this.claimTimeSheet.EndDate != null){
+
+      this.claimTimeSheet.TimeSpentMinute = undefined;
+      this.claimTimeSheet.TimeSpentHourMinute = undefined;
+
+      /* Calcula o campo Duração (Min) */
+
+      let startDate = Date.parse(this.claimTimeSheet.StartDate.toString());
+      let endDate = Date.parse(this.claimTimeSheet.EndDate.toString());
+      let diffMileseconds = endDate - startDate;
+      let minutes = Math.floor((diffMileseconds/1000)/60);
+      let seconds = minutes * 60;
+      this.claimTimeSheet.TimeSpentMinute = minutes;
+      let hours = Math.floor(((diffMileseconds/1000)/60)/60);
+
+      /* Calcula o campo Total Lançado (hh:mm) */
+
+      seconds = seconds % 60;
+
+      minutes = minutes % 60;
+
+      if (hours < 9 && minutes > 9){
+        this.claimTimeSheet.TimeSpentHourMinute = "0" + hours.toString() + ':' + minutes.toString();
+      } else if (hours < 9 && minutes < 9) {
+        this.claimTimeSheet.TimeSpentHourMinute = "0" + hours.toString() + ':' + "0" + minutes.toString();
+      } else if (hours > 9 && minutes < 9){
+        this.claimTimeSheet.TimeSpentHourMinute = hours.toString() + ':' + "0" + minutes.toString();
+      } else {
+        this.claimTimeSheet.TimeSpentHourMinute =  hours.toString() + ':' + minutes.toString();
+      }
+
+    } else {
+      this.claimTimeSheet.TimeSpentMinute = undefined;
+      this.claimTimeSheet.TimeSpentHourMinute = undefined;
+    }
   }
 
 }

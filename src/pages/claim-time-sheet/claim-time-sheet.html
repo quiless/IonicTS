@@ -11,6 +11,7 @@
   <ion-list>
     <claim-time-sheet-card
       *ngFor="let claimTimeSheet of claimTimeSheets"
+      (click)="showClaimTimeSheetModal(claimTimeSheet)"
       [IncidenceTypeName] = "claimTimeSheet.IncidenceTypeName"
       [IncidenceName] = "claimTimeSheet.IncidenceName"
       [TimeSpentMinute] = "claimTimeSheet.TimeSpentMinute"

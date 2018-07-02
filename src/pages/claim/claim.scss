@@ -3,7 +3,7 @@ page-claim {
         overflow: visible;
         position: relative;
     
-        ion-label {
+        ion-label, ion-refresher {
             position: absolute;
             top: -8px;
             right: 40px;
@@ -14,9 +14,8 @@ page-claim {
             padding: 4px 8px;
             border-radius: 4px;
         }
-    }
-    
-    
+    } 
 }
+
 
 
