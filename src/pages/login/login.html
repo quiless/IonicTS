@@ -1,23 +1,23 @@
 <div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
   <div class="flb">
     <div class="Aligner-item Aligner-item--top"></div>
-    <img src="../../assets/imgs/logo2.png">
+    <img src="./assets/imgs/logo3.png">
     <div class="Aligner-item Aligner-item--bottom"></div>
   </div>
 </div>
 
 <ion-content>
- 
+  <img class="img-logo" src="./assets/imgs/logo3.png">
   <ion-item>
-    <ion-label color="primary" stacked> Login </ion-label>
-    <ion-input type="text" placeholder="Informe o login do usuário" [(ngModel)]=login.Username></ion-input>
+    <ion-label color="white" stacked> Usuário </ion-label>
+    <ion-input type="text" placeholder="Digite o usuario"  [(ngModel)]=login.Username></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label color="primary" stacked> Senha </ion-label>
-    <ion-input type="password" placeholder="Informe a senha do usuário" [(ngModel)]=login.Password></ion-input>
+    <ion-label color="white" stacked> Senha </ion-label>
+    <ion-input type="password" placeholder="Digite a senha"  [(ngModel)]=login.Password></ion-input>
   </ion-item>
   <ion-col>
-    <button ion-button (click)='signIn()'> Entrar </button>
+    <button ion-button class="btn-default"  (click)='signIn()'> Entrar </button>
   </ion-col>
   
 </ion-content>

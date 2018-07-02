@@ -16,7 +16,10 @@
       <ion-label color="primary" stacked> Código do Sinistro </ion-label>
       <ion-input type="text" placeholder="Informe o código do sinistro" [(ngModel)]=claimCode></ion-input>
     </ion-item>
-    <button ion-button (click)='getClaimByClaimCode()'> Adicionar </button>
+    <ion-col>
+        <button ion-button class="btn-default" (click)='getClaimByClaimCode()'> Adicionar </button>
+    </ion-col>
+    
   
     
   </ion-content>

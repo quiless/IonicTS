@@ -1,1 +1,43 @@
 $loading-md-box-shadow: none !important;   
+ion-content{
+    background-color: #3b5998 !important;
+    ion-label {
+        color: white!important;
+    }
+    ion-item{
+        padding-left: 16px!important;
+        padding-right: 16px!important;
+        box-shadow: none!important;
+        background-color:transparent!important;
+        border:none!important;
+        color:#fff!important;
+    }
+    .item-inner{
+      border: none!important;
+      box-shadow: none!important;
+      }
+    ion-input, ion-select, ion-datetime, ion-textarea{
+      font-size: 18px!important;
+      color:#000000!important;
+      background-color:#fff!important;
+      border:2px #577fbc solid;
+      border-radius: 10px;
+      margin-bottom:5px;
+    }
+    
+}
+.toolbar-background{
+    background-color: #577fbc !important;
+    color:#fff!important;
+}
+.toolbar-title-md,.bar-button-default-md{
+    color:#fff!important;
+}
+.btn-default{
+    background-color: #577fbc!important;
+    display: block;
+    width:90%;
+    height:40px!important;
+    margin:0 auto!important;
+  }
+  
