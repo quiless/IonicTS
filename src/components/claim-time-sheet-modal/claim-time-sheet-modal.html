@@ -53,14 +53,8 @@
     </ion-item>
     <ion-item>
       <ion-label stacked> Moeda </ion-label>
-      <ion-select [(ngModel)]="claimTimeSheet.IncidenceUniqueId" (ionChange)="getIncidenceTypesByIncidenceUniqueId()">
-        <ion-option *ngFor="let incidence of incidences" [value]="incidence.UniqueId"> {{ incidence.Name }} </ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item>
-      <ion-label stacked> Nível Hierárquico </ion-label>
-      <ion-select [(ngModel)]="claimTimeSheet.IncidenceUniqueId" (ionChange)="getIncidenceTypesByIncidenceUniqueId()">
-        <ion-option *ngFor="let incidence of incidences" [value]="incidence.UniqueId"> {{ incidence.Name }} </ion-option>
+      <ion-select [(ngModel)]="claimTimeSheet.CurrencyId">
+        <ion-option *ngFor="let currency of currencies" [value]="currency.Id"> {{ currency.Name }} </ion-option>
       </ion-select>
     </ion-item>
     <ion-item>

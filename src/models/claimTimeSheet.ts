@@ -10,6 +10,7 @@ export class ClaimTimeSheet{
     IncidenceName : string;
     IncidenceUniqueId : string;
     IncidenceTypeName : string;
+    CurrencyId : number;
     IncidenceTypeUniqueId : string;
     CreateDate : DateTime;
     StartDate : DateTime;

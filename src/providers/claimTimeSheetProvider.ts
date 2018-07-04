@@ -21,8 +21,23 @@ export class ClaimTimeSheetProvider {
   public insertClaimTimeSheet (claimTimeSheet: ClaimTimeSheet) {
     return this.database.getDB()
       .then((db: SQLiteObject) => {
-        let sql = 'insert into ClaimTimeSheet (UniqueId,ClaimUniqueId,HasCashFlow,IncidenceName,IncidenceUniqueId,IncidenceTypeName,IncidenceTypeUniqueId,CreateDate,StartDate,EndDate,TimeSpentMinute,FeesGenerated,FeesToGenerate,Observation,HasCollection) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-        let data = [claimTimeSheet.UniqueId, claimTimeSheet.ClaimUniqueId, claimTimeSheet.HasCashFlow, claimTimeSheet.IncidenceName, claimTimeSheet.IncidenceUniqueId, claimTimeSheet.IncidenceTypeName, claimTimeSheet.IncidenceTypeUniqueId, claimTimeSheet.CreateDate, claimTimeSheet.StartDate, claimTimeSheet.EndDate, claimTimeSheet.TimeSpentMinute, claimTimeSheet.FeesGenerated, claimTimeSheet.FeesToGenerate, claimTimeSheet.Observation, claimTimeSheet.HasCollection];
+        let sql = 'insert into ClaimTimeSheet (CurrencyId, UniqueId,ClaimUniqueId,HasCashFlow,IncidenceName,IncidenceUniqueId,IncidenceTypeName,IncidenceTypeUniqueId,CreateDate,StartDate,EndDate,TimeSpentMinute,FeesGenerated,FeesToGenerate,Observation,HasCollection) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+        let data = [claimTimeSheet.CurrencyId, 
+                    claimTimeSheet.UniqueId, 
+                    claimTimeSheet.ClaimUniqueId, 
+                    claimTimeSheet.HasCashFlow, 
+                    claimTimeSheet.IncidenceName, 
+                    claimTimeSheet.IncidenceUniqueId, 
+                    claimTimeSheet.IncidenceTypeName, 
+                    claimTimeSheet.IncidenceTypeUniqueId, 
+                    claimTimeSheet.CreateDate, 
+                    claimTimeSheet.StartDate, 
+                    claimTimeSheet.EndDate, 
+                    claimTimeSheet.TimeSpentMinute, 
+                    claimTimeSheet.FeesGenerated, 
+                    claimTimeSheet.FeesToGenerate, 
+                    claimTimeSheet.Observation, 
+                    claimTimeSheet.HasCollection];
         
         return db.executeSql(sql, data)
           .catch((e) => console.error(e));
@@ -34,8 +49,8 @@ export class ClaimTimeSheetProvider {
     console.log(claimTimeSheet);
     return this.database.getDB()
       .then((db: SQLiteObject) => {
-        let sql = 'update ClaimTimeSheet set ClaimUniqueId = ?, HasCashFlow = ?, IncidenceName = ?, IncidenceUniqueId = ?, IncidenceTypeName = ?, IncidenceTypeUniqueId = ?, CreateDate = ?, StartDate = ?, EndDate = ?,  TimeSpentMinute = ?, FeesGenerated = ?, FeesToGenerate = ?, Observation = ?, HasCollection = ? where UniqueId = ?';
-        let data = [claimTimeSheet.ClaimUniqueId, claimTimeSheet.HasCashFlow, claimTimeSheet.IncidenceName, claimTimeSheet.IncidenceUniqueId, claimTimeSheet.IncidenceTypeName, claimTimeSheet.IncidenceTypeUniqueId, claimTimeSheet.CreateDate, claimTimeSheet.StartDate, claimTimeSheet.EndDate, claimTimeSheet.TimeSpentMinute, claimTimeSheet.FeesGenerated, claimTimeSheet.FeesToGenerate, claimTimeSheet.Observation, claimTimeSheet.HasCollection, claimTimeSheet.UniqueId];
+        let sql = 'update ClaimTimeSheet set CurrencyId = ?,ClaimUniqueId = ?, HasCashFlow = ?, IncidenceName = ?, IncidenceUniqueId = ?, IncidenceTypeName = ?, IncidenceTypeUniqueId = ?, CreateDate = ?, StartDate = ?, EndDate = ?,  TimeSpentMinute = ?, FeesGenerated = ?, FeesToGenerate = ?, Observation = ?, HasCollection = ? where UniqueId = ?';
+        let data = [claimTimeSheet.CurrencyId, claimTimeSheet.ClaimUniqueId, claimTimeSheet.HasCashFlow, claimTimeSheet.IncidenceName, claimTimeSheet.IncidenceUniqueId, claimTimeSheet.IncidenceTypeName, claimTimeSheet.IncidenceTypeUniqueId, claimTimeSheet.CreateDate, claimTimeSheet.StartDate, claimTimeSheet.EndDate, claimTimeSheet.TimeSpentMinute, claimTimeSheet.FeesGenerated, claimTimeSheet.FeesToGenerate, claimTimeSheet.Observation, claimTimeSheet.HasCollection, claimTimeSheet.UniqueId];
  
         return db.executeSql(sql, data)
           .catch((e) => console.error(e));

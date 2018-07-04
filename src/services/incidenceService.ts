@@ -29,11 +29,11 @@ export class IncidenceService {
             "TypeResponse": 1,
             "DataResult": [
                 {
-                    "UniqueId": "dcf78620-01ba-47f2-8447-a43df37ee9d4",
+                    "UniqueId": "7230fcdd-f89d-4eab-9411-11d406acfb7d",
                     "Name": "Serviço Interno"
                 },
                 {
-                    "UniqueId": "ed6fff8c-12c5-4f0a-871d-fa435cf3efe6",
+                    "UniqueId": "1aa419af-fdfa-470d-b784-8da74a372b56",
                     "Name": "Serviço Externo"
                 }
             ],

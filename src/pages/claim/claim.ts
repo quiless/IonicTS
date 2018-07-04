@@ -13,6 +13,7 @@ import { ClaimTimeSheetPage } from '../claim-time-sheet/claim-time-sheet'
 
 /* Native */
 import { Storage } from '@ionic/storage';
+import { Network } from '@ionic-native/network';
 
 
 @Component({
@@ -24,32 +25,40 @@ import { Storage } from '@ionic/storage';
 export class ClaimPage {
 
   claims: any[] = [];
+  conection =  "";
+  alert = this.alertController.create();
 
  
   constructor(private navCtrl: NavController, 
     private storage : Storage,
+    private network : Network,
     private alertController : AlertController, 
     private modalController : ModalController, 
     private claimProvider : ClaimProvider,
     private toastController : ToastController,
     private events : Events ) {
 
+    
+
     this.events.subscribe('getClaims', () => {
       this.getClaims();
     });
+
+    
   }
+
+  
 
   ionViewDidLoad() {
     this.getClaims();
+    
 
-    console.log(this.storage);
    
-    var userInfo = this.storage.get('UserInfo');
-    var login = this.storage.get('Login');
+    // var userInfo = this.storage.get('UserInfo');
+    // var login = this.storage.get('Login');
 
-    console.log(userInfo);
-    console.log(login);
   }
+
 
   showClaimModal (){
     let profileModal = this.modalController.create(ClaimModalComponent);
@@ -68,9 +77,25 @@ export class ClaimPage {
   }
 
   synchronize(event){
-    setTimeout(() => {
-      event.complete();
-    }, 2000)
+
+    if (this.network.type == "none"){
+      this.conection = "Sem conexão com a internet"
+      setTimeout(() => {
+        event.complete();
+      }, 3000)
+    } else {
+      this.conection = "Sincronizando no " + this.network.type + ".";
+      setTimeout(() => {
+        event.complete();
+      }, 3000)
+    }
+
+    
+
+    
+
+
+    
   }
 
 }

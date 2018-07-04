@@ -7,6 +7,7 @@ import { Events, NavController, LoadingController, NavParams, AlertController, M
 
 import { IncidenceProvider } from '../../providers/incidenceProvider'
 import { IncidenceTypeProvider } from '../../providers/incidenceTypeProvider'
+import { CurrencyProvider } from '../../providers/currencyProvider'
 
 /* Model */
 
@@ -20,6 +21,7 @@ import { ClaimTimeSheet } from '../../models/claimTimeSheet'
 export class ClaimTimeSheetModalComponent {
 
   claimCode = "";
+  currencies : any [] = [];
   incidences : any [] = [];
   incidenceTypes : any [] = [];
   claimTimeSheet = new ClaimTimeSheet();
@@ -29,6 +31,7 @@ export class ClaimTimeSheetModalComponent {
   constructor(
     private navCtrl: NavController, 
     private navParams : NavParams,
+    private currencyProvider : CurrencyProvider,
     private modalController : ModalController, 
     private incidenceProvider : IncidenceProvider,
     private incidenceTypeProvider : IncidenceTypeProvider,
@@ -37,15 +40,18 @@ export class ClaimTimeSheetModalComponent {
     private viewController : ViewController,
     private toastController : ToastController,
     private events : Events ) {
-
+      
       this.getIncidences().then(() => {
           if (navParams.data != undefined && navParams.data != null ){
             this.claimTimeSheet = navParams.data;
             this.calculateTime();
-            this.claimTimeSheet.IncidenceUniqueId = 'dcf78620-01ba-47f2-8447-a43df37ee9d4'
           
           }
+      }).then(() => {
+        this.getIncidenceTypesByIncidenceUniqueId();
       });
+
+      this.getCurrencies();
   }
 
   ionViewDidLoad() {
@@ -56,6 +62,13 @@ export class ClaimTimeSheetModalComponent {
   getIncidences(){
     return this.incidenceProvider.getIncidences().then((result: any[]) => {
       this.incidences = result;
+    });
+  }
+
+  getCurrencies(){
+    return this.currencyProvider.getCurrencies().then((result: any[]) => {
+      this.currencies = result;
+      console.log(result);
     });
   }
 

@@ -11,12 +11,14 @@ import { ClaimTimeSheetModalComponent } from '../../components/claim-time-sheet-
 import { ClaimTimeSheetProvider } from '../../providers/claimTimeSheetProvider'
 import { IncidenceProvider } from '../../providers/incidenceProvider'
 import { IncidenceTypeProvider } from '../../providers/incidenceTypeProvider'
+import { CurrencyProvider } from '../../providers/currencyProvider'
 
 /* Services */
 
 import { ClaimTimeSheetService } from '../../services/claimTimeSheetService'
 import { IncidenceService } from '../../services/incidenceService'
 import { IncidenceTypeService } from '../../services/incidenceTypeService'
+import { CurrencyService } from '../../services/currencyService'
 
 /* Models */
 
@@ -34,6 +36,7 @@ export class ClaimTimeSheetPage {
   claimTimeSheets: any[] = [];
   incidences : any [] = [];
   incidenceTypes : any [] = [];
+  currencies : any [] = [];
   authResponse = new AuthResponse();
   ClaimCode = "";
   UniqueId = "";
@@ -44,6 +47,8 @@ export class ClaimTimeSheetPage {
     private modalController: ModalController,
     private toastController: ToastController,
     private loadingController: LoadingController,
+    private currencyProvider : CurrencyProvider,
+    private currencyService : CurrencyService,
     private claimTimeSheetProvider: ClaimTimeSheetProvider,
     private incidenceProvider : IncidenceProvider,
     private incidenceTypeProvider : IncidenceTypeProvider,
@@ -67,6 +72,56 @@ export class ClaimTimeSheetPage {
     this.getClaimTimeSheetsApi();
     this.getIncidencesApi();
     this.getIncidenceTypesApi();
+    this.getCurrenciesApi();
+  }
+
+  getCurrenciesApi (){
+    this.authResponse = this.currencyService.getCurrencies();
+
+    let blockUi = this.loadingController.create({
+      spinner: 'ios',
+      duration: 2000
+    });
+
+    if (this.authResponse.TypeResponse == enumAuthResponse.Success) {
+      let toast = this.toastController.create({
+        duration: 2000,
+        position: 'bottom'
+      });
+
+      for (var i = 0; i < this.authResponse.DataResult.length; i++) {
+        let result = this.authResponse.DataResult[i];
+        this.getCurrencyByUniqueId(this.authResponse.DataResult[i].UniqueId).then((response) => {
+          if (response == 0){
+            this.insertCurrency(result).then((retorno) => { 
+            });
+          } else {
+            this.updateCurrency(result);
+          }
+        }).then(() => {
+          this.getCurrencies();
+        })
+      }
+    }
+  }
+
+  getCurrencies(){
+    return this.currencyProvider.getCurrencies().then((result: any[]) => {
+      this.currencies = result;
+      console.log(result);
+    });
+  }
+
+  insertCurrency(data) {
+    return this.currencyProvider.insertCurrency(data);
+  }
+
+  updateCurrency(data){
+    return this.currencyProvider.updateCurrency(data);
+  }
+
+  getCurrencyByUniqueId(data){
+    return this.currencyProvider.getCurrencyByUniqueId(data);
   }
 
   getIncidenceTypesApi (){
@@ -223,6 +278,7 @@ export class ClaimTimeSheetPage {
   getClaimTimeSheets() {
     return this.claimTimeSheetProvider.getClaimTimeSheets().then((result: any[]) => {
       this.claimTimeSheets = result;
+      console.log(result);
       let toast = this.toastController.create({
         duration: 2000,
         position: 'bottom'

@@ -21,7 +21,8 @@ import { ClaimTimeSheetCard } from '../components/claim-time-sheet-card/claim-ti
 
 /* Providers */
 
-import { ClaimProvider } from '../providers/claimProvider'
+import {CurrencyProvider} from '../providers/currencyProvider'
+import {ClaimProvider} from '../providers/claimProvider'
 import {ClaimTimeSheetProvider} from '../providers/claimTimeSheetProvider'
 import {SQLiteProvider} from '../database/SQLite'
 import {IncidenceProvider} from '../providers/incidenceProvider'
@@ -32,6 +33,7 @@ import {IncidenceTypeProvider} from '../providers/incidenceTypeProvider'
 import { AuthService } from '../services/authService';
 import { ClaimService } from '../services/claimService';
 import { ClaimTimeSheetService } from '../services/claimTimeSheetService'
+import { CurrencyService } from '../services/currencyService'
 import { IncidenceService } from '../services/incidenceService'
 import { IncidenceTypeService } from '../services/incidenceTypeService'
 
@@ -41,6 +43,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SQLite } from '@ionic-native/sqlite'
 import { Interceptor } from '../services/interceptorService';
+import { Network } from '@ionic-native/network';
 
 
 
@@ -80,16 +83,19 @@ import { Interceptor } from '../services/interceptorService';
   ],
   providers: [
     StatusBar,
+    Network,
     SplashScreen,
     AuthService,
     ClaimService,
     ClaimProvider,
     SQLiteProvider,
     IncidenceTypeProvider,
+    CurrencyService,
     ClaimTimeSheetProvider,
     ClaimTimeSheetService,
     IncidenceService,
     IncidenceTypeService,
+    CurrencyProvider,
     SQLite,
     IncidenceProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

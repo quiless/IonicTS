@@ -29,50 +29,50 @@ export class IncidenceTypeService {
             "TypeResponse": 1,
             "DataResult": [
                 {
-                    "UniqueId": "346db5a5-71a6-4a9d-bbe5-d4eaf043d0d5",
-                    "IncidenceUniqueId": "dcf78620-01ba-47f2-8447-a43df37ee9d4",
-                    "IncidenceName": "Serviço Interno",
-                    "Name": "Documentos"
-                },
-                {
-                    "UniqueId": "15b24b3b-b483-4a36-93dd-70e159be67da",
-                    "IncidenceUniqueId": "dcf78620-01ba-47f2-8447-a43df37ee9d4",
-                    "IncidenceName": "Serviço Interno",
-                    "Name": "Emails"
-                },
-                {
-                    "UniqueId": "8bcb0676-d065-4318-beb1-008e3b1cc61b",
-                    "IncidenceUniqueId": "dcf78620-01ba-47f2-8447-a43df37ee9d4",
-                    "IncidenceName": "Serviço Interno",
-                    "Name": "Contatos telefônicos"
-                },
-                {
-                    "UniqueId": "c14ed1f2-7566-4e07-a434-b024a58dbc9f",
-                    "IncidenceUniqueId": "dcf78620-01ba-47f2-8447-a43df37ee9d4",
-                    "IncidenceName": "Serviço Interno",
-                    "Name": "Relatório"
-                },
-                {
-                    "UniqueId": "28515932-1a38-4ebf-9bbd-c2becf067f63",
-                    "IncidenceUniqueId": "dcf78620-01ba-47f2-8447-a43df37ee9d4",
+                    "UniqueId": "9115c247-45f9-45ef-93bb-e38660dde8cd",
+                    "IncidenceUniqueId": "7230fcdd-f89d-4eab-9411-11d406acfb7d",
                     "IncidenceName": "Serviço Interno",
                     "Name": "Interno"
                 },
                 {
-                    "UniqueId": "233d1afa-b3f3-4a5c-8f0b-aebeab82ea9f",
-                    "IncidenceUniqueId": "ed6fff8c-12c5-4f0a-871d-fa435cf3efe6",
+                    "UniqueId": "225b7427-dea8-4faf-b2cd-6d9f969e4588",
+                    "IncidenceUniqueId": "1aa419af-fdfa-470d-b784-8da74a372b56",
                     "IncidenceName": "Serviço Externo",
                     "Name": "Vistoria"
                 },
                 {
-                    "UniqueId": "60d90c73-c7ec-4f02-a226-7eaf145de20a",
-                    "IncidenceUniqueId": "ed6fff8c-12c5-4f0a-871d-fa435cf3efe6",
+                    "UniqueId": "04fee9da-afae-4620-82ee-3244b618ec05",
+                    "IncidenceUniqueId": "7230fcdd-f89d-4eab-9411-11d406acfb7d",
+                    "IncidenceName": "Serviço Interno",
+                    "Name": "Documentos"
+                },
+                {
+                    "UniqueId": "be063880-7e0d-4231-8d9c-715cce159eba",
+                    "IncidenceUniqueId": "7230fcdd-f89d-4eab-9411-11d406acfb7d",
+                    "IncidenceName": "Serviço Interno",
+                    "Name": "Emails"
+                },
+                {
+                    "UniqueId": "4dde8244-7a21-4d7f-995e-7028e3ee1148",
+                    "IncidenceUniqueId": "7230fcdd-f89d-4eab-9411-11d406acfb7d",
+                    "IncidenceName": "Serviço Interno",
+                    "Name": "Contatos telefônicos"
+                },
+                {
+                    "UniqueId": "f9707dcc-9219-489b-899c-9bdf01e580f0",
+                    "IncidenceUniqueId": "7230fcdd-f89d-4eab-9411-11d406acfb7d",
+                    "IncidenceName": "Serviço Interno",
+                    "Name": "Relatório"
+                },
+                {
+                    "UniqueId": "b5ce35ee-ba48-4372-aeac-9bfcfb42894f",
+                    "IncidenceUniqueId": "1aa419af-fdfa-470d-b784-8da74a372b56",
                     "IncidenceName": "Serviço Externo",
                     "Name": "Reunião"
                 },
                 {
-                    "UniqueId": "4ec7c245-64ab-4283-8c2b-13b1b7f07fc3",
-                    "IncidenceUniqueId": "ed6fff8c-12c5-4f0a-871d-fa435cf3efe6",
+                    "UniqueId": "4465831f-ea3f-47e5-bef0-4f54caa6fb73",
+                    "IncidenceUniqueId": "1aa419af-fdfa-470d-b784-8da74a372b56",
                     "IncidenceName": "Serviço Externo",
                     "Name": "Outros"
                 }
