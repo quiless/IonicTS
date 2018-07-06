@@ -1,10 +1,10 @@
 $loading-md-box-shadow: none !important;   
-$refresher-text-color : #fff !important;    
-$refresher-icon-color : #fff !important;
+$refresher-text-color : #000 !important;    
+$refresher-icon-color : #000 !important;
 ion-content{
-    background-color: #3b5998 !important;
-    ion-label {
-        color: white!important;
+    background-color: #ffffff !important;
+    ion-label, ion-input, ion-datetime, ion-toggle, ion-textarea, ion-select{
+        color: #000!important;
     }
     ion-item{
         padding-left: 16px!important;
@@ -17,18 +17,18 @@ ion-content{
     
 }
 .toolbar-background{
-    background-color: #577fbc !important;
+    background-color: #1976d2 !important;
     color:#fff!important;
 }
 .toolbar-title-md,.bar-button-default-md{
     color:#fff!important;
 }
 .btn-default{
-    background-color: #577fbc!important;
+    background-color: #1976d2!important;
     display: block;
     width:88%;
     height:40px!important;
-    margin:0 auto!important;
+    margin:10px auto 10px!important;
 }
 
 
