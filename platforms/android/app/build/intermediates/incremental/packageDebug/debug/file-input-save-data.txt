@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Jul 05 21:11:58 BRT 2018
+#Thu Jul 05 22:45:21 BRT 2018
 76.base=C\:\\Users\\nilto\\Documents\\ionic\\Gclaims vistoria\\IonicTS\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 5.base=C\:\\Users\\nilto\\Documents\\ionic\\Gclaims vistoria\\IonicTS\\platforms\\android\\app\\build\\intermediates\\assets\\debug
 42.base=C\:\\Users\\nilto\\Documents\\ionic\\Gclaims vistoria\\IonicTS\\platforms\\android\\app\\build\\intermediates\\assets\\debug
