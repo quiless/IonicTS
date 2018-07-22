@@ -1,5 +1,20 @@
 page-login{
-
+  .fade {
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 3s;
+  }
+  
+  @keyframes fadeInOpacity {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 ion-content{
   background-color: #01579b !important;
   ion-label, ion-input{
@@ -33,14 +48,14 @@ ion-content{
     left: 0;
     z-index: 100000;
     width:100%;
-    background-color: #01579b;
-    
+    background-color: transparent;
+
   }
   
   .flb {
     background-color: #01579b;
     width: 100%;
-    max-height: 300px;
+    max-height: 290px;
     animation: pulse 1s linear forwards;
     display: flex;
     align-items: center;
